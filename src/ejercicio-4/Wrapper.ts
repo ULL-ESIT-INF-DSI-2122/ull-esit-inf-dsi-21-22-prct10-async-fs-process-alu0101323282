@@ -65,7 +65,7 @@ export class Wrapper extends EventEmitter {
       ls.stdout.pipe(process.stdout);
       this.emit('ls', 'Files listed');
     });
-    ls.stderr.on('data', (err) => {
+    ls.stderr.on('data', () => {
       console.log('Error listing files');
       this.emit('lsError', 'Error listing files');
     });
@@ -81,9 +81,9 @@ export class Wrapper extends EventEmitter {
       cat.stdout.pipe(process.stdout);
       this.emit('cat', 'Content showed');
     });
-    cat.stderr.on('data', (err) => {
+    cat.stderr.on('data', () => {
       console.log('Error show file\'s content');
-      this.emit('showError', err);
+      this.emit('showError', 'Error show file\'s content');
     });
   }
 

@@ -65,7 +65,7 @@ describe('Pruebas clase Wrapper', () => {
   });
   it('showContent() Error', (done) => {
     wrapper.on('showError', (message) => {
-      expect(message.toString()).to.be.equal(`cat: x: No such file or directory\n`);
+      expect(message.toString()).to.be.equal('Error show file\'s content');
       done();
     });
     wrapper.showContent('x');
