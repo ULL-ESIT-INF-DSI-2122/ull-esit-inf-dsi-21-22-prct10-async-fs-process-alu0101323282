@@ -31,4 +31,8 @@ describe('Pruebas clase DirectoryWatcher', () => {
     });
     emiter.emit('error', 'prueba.txt');
   });
+
+  setTimeout(() => {
+    process.exit();
+  }, 2000);
 });
