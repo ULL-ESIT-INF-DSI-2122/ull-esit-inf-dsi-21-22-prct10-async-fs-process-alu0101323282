@@ -1,12 +1,9 @@
 {
     "entryPoints": [
-        "./src/EjercicioPE102/ReduceTemplate.ts",
-        "./src/EjercicioPE102/AddReduce.ts",
-        "./src/EjercicioPE102/SubReduce.ts",
-        "./src/EjercicioPE102/ProdReduce.ts",
-        "./src/EjercicioPE102/DivReduce.ts",
-        "./src/Notas/Note.ts",
-        "./src/Notas/note-app.ts"
+        "./src/EjercicioPE102/Cut.ts",
+        "./src/ejercicio-2/WordFinder.ts",
+        "./src/ejercicio-3/DirectoryWatcher.ts",
+        "./src/ejercicio-4/Wrapper.ts"
     ],
     "out": "./docs/",
     "sort": "enum-value-ascending",
