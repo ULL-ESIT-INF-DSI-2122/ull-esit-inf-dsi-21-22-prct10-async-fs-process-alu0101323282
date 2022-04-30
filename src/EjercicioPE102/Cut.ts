@@ -33,7 +33,8 @@ if (process.argv.length !== 4) {
 } else if (!existsSync(process.argv[2])) {
   console.log('File not found');
 } else {
+  /*
   const fileName = process.argv[2];
   const cutColumn = process.argv[3];
-  new Cut(fileName, cutColumn);
+  new Cut(fileName, cutColumn);*/
 }
