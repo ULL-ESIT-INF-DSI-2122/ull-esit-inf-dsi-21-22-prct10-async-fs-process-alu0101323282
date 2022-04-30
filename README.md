@@ -14,113 +14,7 @@
 ## __Ejercicios__
 
 ### __Ejercicio 1__
-Traza de ejecución:
-
-- Pila de llamadas:
-|                         |
-|process.argv.length !== 3|
----------------------------
-- Registro de eventos:
-- Cola de manejadores:
-- Consola:
-
-    ⬇️
-- Pila de llamadas:
-|                                 |
-|const filename = process.argv[2];|
------------------------------------
-- Registro de eventos:
-- Cola de manejadores:
-- Consola:
-
-    ⬇️
-- Pila de llamadas:
-|                                                  |
-|if (err)                                          |
-|access(filename, constants.F_OK, (err) => {..}    |
-----------------------------------------------------
-- Registro de eventos:
-- Cola de manejadores:
-- Consola:
-
-    ⬇️
-- Pila de llamadas:
-|                                                  |
-|console.log(`Starting to watch file ${filename}`);|
-|access(filename, constants.F_OK, (err) => {..}    |
-----------------------------------------------------
-- Registro de eventos:
-- Cola de manejadores:
-- Consola:
-
-    ⬇️
-- Pila de llamadas:
-|                                                  |
-|watcher.on('change', () => {..}                   |
-|access(filename, constants.F_OK, (err) => {..}    |
-----------------------------------------------------
-- Registro de eventos:
-- Cola de manejadores:
-- Consola: `Starting to watch file helloworld.txt`
-
-    ⬇️
-- Pila de llamadas:
-|                                                     |
-|console.log(`File ${filename} is no longer watched`);|           |
-|access(filename, constants.F_OK, (err) => {..}       |
--------------------------------------------------------
-- Registro de eventos:
-on('change', () => {console.log(`File ${filename} has been modified somehow`);});
-- Cola de manejadores:
-- Consola:
-
-    ⬇️
-- Pila de llamadas:
-|                                                     |
-|access(filename, constants.F_OK, (err) => {..}       |
--------------------------------------------------------
-- Registro de eventos:
-on('change', () => {console.log(`File ${filename} has been modified somehow`);});
-- Cola de manejadores:
-- Consola: `File helloworld.txt is no longer watched`
-
-    ⬇️
-- Pila de llamadas:
-|                                                          |
-|console.log(`File ${filename} has been modified somehow`);|
-------------------------------------------------------------
-- Registro de eventos:
-on('change', () => {console.log(`File ${filename} has been modified somehow`);});
-- Cola de manejadores:
-- Consola:
-
-    ⬇️
-- Pila de llamadas:
-|                                                          |
-------------------------------------------------------------
-- Registro de eventos:
-on('change', () => {console.log(`File ${filename} has been modified somehow`);});
-- Cola de manejadores:
-- Consola: `File helloworld.txt has been modified somehow`
-
-    ⬇️
-- Pila de llamadas:
-|                                                          |
-|console.log(`File ${filename} has been modified somehow`);|
-------------------------------------------------------------
-- Registro de eventos:
-on('change', () => {console.log(`File ${filename} has been modified somehow`);});
-- Cola de manejadores:
-- Consola:
-
-    ⬇️
-- Pila de llamadas:
-|                                                          |
-------------------------------------------------------------
-- Registro de eventos:
-on('change', () => {console.log(`File ${filename} has been modified somehow`);});
-- Cola de manejadores:
-- Consola: `File helloworld.txt has been modified somehow`
+Traza de ejecución del siguiente código:
 
 ``` typescript
 import {access, constants, watch} from 'fs';
@@ -147,6 +41,152 @@ if (process.argv.length !== 3) {
   });
 }
 ```
+
+- Pila de llamadas:
+                       
+    `if (process.argv.length !== 3)`
+- Registro de eventos:
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+
+    `const filename = process.argv[2];`
+- Registro de eventos:
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+
+    `if (err)`
+
+    `access(filename, constants.F_OK, (err) => {..}`
+- Registro de eventos:
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+
+    `console.log('Starting to watch file ${filename}');`
+
+    `access(filename, constants.F_OK, (err) => {..}`
+- Registro de eventos:
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+
+    `const watcher = watch(process.argv[2]);` 
+
+    `access(filename, constants.F_OK, (err) => {..}`
+- Registro de eventos:
+- Cola de manejadores:
+- Consola: `Starting to watch file helloworld.txt`
+
+    ⬇️
+- Pila de llamadas:
+
+    `watcher.on('change', () => {..}` 
+
+    `access(filename, constants.F_OK, (err) => {..}`
+- Registro de eventos:
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+
+    `console.log('File ${filename} is no longer watched');`
+
+    `access(filename, constants.F_OK, (err) => {..}`     
+- Registro de eventos:
+
+    `on('change', () => {console.log('File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+- Registro de eventos:
+
+    `on('change', () => {console.log('File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+- Consola: `File helloworld.txt is no longer watched`
+
+    ⬇️
+    
+ (En este momento se realiza una modificación en el fichero helloworld.txt)
+- Pila de llamadas:
+- Registro de eventos:
+
+    `on('change', () => {console.log(File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+
+    `() => {console.log('File ${filename} has been modified somehow');`
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+
+    `console.log('File ${filename} has been modified somehow');`
+- Registro de eventos:
+
+    `on('change', () => {console.log('File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+- Registro de eventos:
+
+    `on('change', () => {console.log('File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+- Consola: `File helloworld.txt has been modified somehow`
+   
+    ⬇️
+    
+ (En este momento se realiza otra modificación en el fichero helloworld.txt)
+- Pila de llamadas:
+- Registro de eventos:
+
+    `on('change', () => {console.log('File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+
+    `() => {console.log('File ${filename} has been modified somehow');`
+- Consola:
+
+   ⬇️
+- Pila de llamadas:
+
+    `console.log('File ${filename} has been modified somehow');`
+- Registro de eventos:
+
+    `on('change', () => {console.log('File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+- Consola:
+
+    ⬇️
+- Pila de llamadas:
+- Registro de eventos:
+
+    `on('change', () => {console.log('File ${filename} has been modified somehow');});`
+- Cola de manejadores:
+- Consola: `File helloworld.txt has been modified somehow`
+
+Cabe destacar que en esta traza no se ha tenido en cuenta que la función asíncrona `fs.watch` suele emitir los eventos de 2 en 2, ya que este no es un comportamiento habitual en el resto de funciones de este tipo.
+
+¿Qué hace la función access?
+
+La función `acces` es una función asíncrona que comprueba los permisos de un archivo o directorio determinado.
+
+¿Para qué sirve el objeto constants?
+
+El objeto `constants` es un valor entero que indica el permiso que se va a comprobar. En el caso del código anterior, `constants.F_OK` indica si el archivo es visible para el proceso principal, esto es útil para determinar si un archivo existe, que es, precisamente, para lo que se utiliza en este caso.
+
 
 ### __Ejercicio 2__
 
