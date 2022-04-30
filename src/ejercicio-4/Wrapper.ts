@@ -67,7 +67,7 @@ export class Wrapper extends EventEmitter {
     });
     ls.stderr.on('data', (err) => {
       console.log('Error listing files');
-      this.emit('lsError', err);
+      this.emit('lsError', 'Error listing files');
     });
   }
 

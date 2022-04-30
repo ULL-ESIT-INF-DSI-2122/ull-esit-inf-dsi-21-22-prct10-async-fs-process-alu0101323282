@@ -51,7 +51,7 @@ describe('Pruebas clase Wrapper', () => {
   });
   it('listFiles() Error', (done) => {
     wrapper.on('lsError', (message) => {
-      expect(message.toString()).to.be.equal(`ls: cannot access 'x': No such file or directory\n`);
+      expect(message.toString()).to.be.equal(`Error listing files`);
       done();
     });
     wrapper.listFiles('x');
