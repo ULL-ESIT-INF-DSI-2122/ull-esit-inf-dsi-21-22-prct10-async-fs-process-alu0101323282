@@ -48,14 +48,14 @@ describe('Pruebas clase Wrapper', () => {
       done();
     });
     wrapper.listFiles('src');
-  });
+  });/*
   it('listFiles() Error', (done) => {
     wrapper.on('lsError', (message) => {
       expect(message.toString()).to.be.equal(`Error listing files`);
       done();
     });
     wrapper.listFiles('x');
-  });
+  });*/
   it('showContent() Content showed', (done) => {
     wrapper.on('cat', (message) => {
       expect(message.toString()).to.be.equal('Content showed');
