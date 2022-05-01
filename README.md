@@ -266,6 +266,19 @@ export class WordFinder extends EventEmitter {
 
 Para este ejercicio cree la clase `DirectoryWatcher` que hereda de `EventEmitter` y que contine el método `watchDirectory` que observa los cambios producidos en un directorio. El usuario y el directorio a observar serán pasados como parámetros desde la línea de comandos haciendo uso del paquete yargs.
 
+- watchDirectory(): Este método utiliza la función asíncrona `watch` para observar los cambios realizados en el directorio a observar y registra manejadores que en caso de creación/modificación (watcher.on('change')) o de eliminación (watcher.on('rename')) muestran por pantalla un mensaje informativo.
+
+¿Cómo haría para mostrar, no solo el nombre, sino también el contenido del fichero, en el caso de que haya sido creado o modificado?
+
+Dentro del manejador del evento `change`, que es el que indica que un archivo ha sido creado o modificado, utilizaría la función asíncrona `readFile` para mostrar el contenido del archivo en cuestión.
+
+¿Cómo haría para que no solo se observase el directorio de un único usuario sino todos los directorios correspondientes a los diferentes usuarios de la aplicación de notas?
+
+Utilizaría la función `watch` con la opción `recursive` activada para observar los cambios en el directorio general que contiene todos los directorios de los usuarios.
+```typecript
+watch('/NoteAppDirectories', {recursive: true});
+```
+
 ``` typescript
 export class DirectoryWatcher extends EventEmitter {
   constructor() {
