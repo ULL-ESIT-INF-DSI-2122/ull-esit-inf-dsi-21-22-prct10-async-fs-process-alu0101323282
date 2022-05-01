@@ -275,7 +275,7 @@ Dentro del manejador del evento `change`, que es el que indica que un archivo ha
 ¿Cómo haría para que no solo se observase el directorio de un único usuario sino todos los directorios correspondientes a los diferentes usuarios de la aplicación de notas?
 
 Utilizaría la función `watch` con la opción `recursive` activada para observar los cambios en el directorio general que contiene todos los directorios de los usuarios.
-```typecript
+```typescript
 watch('/NoteAppDirectories', {recursive: true});
 ```
 
