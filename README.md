@@ -305,6 +305,16 @@ export class DirectoryWatcher extends EventEmitter {
 
 ### __Ejercicio 4__
 
+Para este ejercicio cree la clase `Wrapper` que hereda de `EventEmitter` y que contine métodos que realizan la función propia de algunos comandos de Linux. El comando a utilizar, asi como sus opciones, serán pasados como parámetros desde la línea de comandos haciendo uso del paquete yargs.
+
+- directoryOrFile(): Este método indica si un fichero es un archivo o un directorio, para ello utiliza `spawn` para crear dos subprocesos con comandos que solo devolverán datos si el archivo en cuestión es un directorio, en el caso de `directory`, o un archivo, en caso de `file`. De esta forma, registrando manejadores con el evento 'data' para cada subproceso, podemos comprobar si el fichero en cuestión es un directorio o un archivo.
+- createDirectory(): Este método simplemente utiliza la función asíncrona `mkdir` para crear un directorio en la ruta indicada.
+- listFiles(): Este método utiliza `spawn` para crear un subproceso con el comando `ls` y el directorio objetivo ccomo parámetro. De esta forma, registrando un manejador con el evento 'data' para dicho subproceso, podemos mostrar por pantalla los ficheros que contiene dicho directorio.
+- showContent(): Este método utiliza de nuevo `spawn` para crear un subproceso, en este caso con el comando `cat` y el archivo objetivo como parámetro. De esta forma, registrando un manejador con el evento 'data' para dicho subproceso, podemos mostrar por pantalla el contenido de dicho archivo.
+- remove(): Este método utiliza la función asíncrona `rm` para eliminar el fichero indicado.
+- rename(): Este método utiliza la función asíncrona `rename` para mover un archivo cambiando su ruta.
+
+
 ``` typescript
 export class Wrapper extends EventEmitter {
   constructor() {
