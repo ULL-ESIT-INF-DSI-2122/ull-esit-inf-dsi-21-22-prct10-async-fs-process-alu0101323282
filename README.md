@@ -312,7 +312,7 @@ Para este ejercicio cree la clase `Wrapper` que hereda de `EventEmitter` y que c
 - listFiles(): Este método utiliza `spawn` para crear un subproceso con el comando `ls` y el directorio objetivo ccomo parámetro. De esta forma, registrando un manejador con el evento 'data' para dicho subproceso, podemos mostrar por pantalla los ficheros que contiene dicho directorio.
 - showContent(): Este método utiliza de nuevo `spawn` para crear un subproceso, en este caso con el comando `cat` y el archivo objetivo como parámetro. De esta forma, registrando un manejador con el evento 'data' para dicho subproceso, podemos mostrar por pantalla el contenido de dicho archivo.
 - remove(): Este método utiliza la función asíncrona `rm` para eliminar el fichero indicado.
-- rename(): Este método utiliza la función asíncrona `rename` para mover un archivo cambiando su ruta.
+- move(): Este método utiliza la función asíncrona `rename` para mover un archivo cambiando su ruta.
 
 
 ``` typescript
