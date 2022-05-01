@@ -189,7 +189,14 @@ El objeto `constants` es un valor entero que indica el permiso que se va a compr
 
 
 ### __Ejercicio 2__
+Para este ejercicio cree la clase `WordFinder` que hereda de `EventEmitter` y que contine dos métodos para buscar palabras en un archivo de texto, uno haciendo uso del método `pipe` de un Stream para poder redirigir la salida del comando `cat` hacia el comando `grep`, y el otro sin hacer uso del método pipe, solamente creando los subprocesos necesarios y registrando manejadores a aquellos eventos necesarios. La palabra y el archivo en el que buscar serán pasados como parámetros desde la línea de comandos haciendo uso del paquete yargs.
 
+- pipesFind(): Este método utiliza la función asíncrona `spawn` para crear los dos subprocesos `cat` y `grep` y redirige la salida del primero hacia el segundo con `pipe`. Tras esto se registra un manejador que se activará al recibir datos desde la salida del comando `grep` (grep.stdout.on('data')), dichos datos contendrán una cadena de carácteres con las líneas en las que se ha encontrado la palabra a buscar. Una vez obtenidas la líneas en las que se encuentra la palabra buscada, se cuentan el número de ocurrencias de dicha palabra mediante un bucle `while` y el método `indexOf()` de string, y se imprime un mensaje informativo por pantalla.
+
+  Para detectar los casos en los que no se encuentra la palabra a buscar, se utiliza un booleano `found` que por defecto tendrá el valor `false` y que se marcará como `true` en caso de encontrar la palabra en cuestión. De esta forma, se registra un manejador que se activará cuando se cierre el subproceso `grep` (grep.on(`close`)) y que en caso de que `found` sea `false` mostrará un mensaje por pantalla informando de que la palabra no ha sido encontrada.
+
+- find(): Este método funciona igual que el anterior, pero para redirigir la salida de un comando hacia el otro, se crea el subproceso `cat` con la función asíncrona `spawn` para después, mediante un manejador que se activa al recibir datos desde la salida de dicho proceso (cat.stdout.on('data')), pasar dichos datos recibidos como parámetro al comando `grep` en la creación de dicho subproceso. 
+ 
 ``` typescript
 export class WordFinder extends EventEmitter {
   constructor() {
@@ -256,6 +263,8 @@ export class WordFinder extends EventEmitter {
 ```
 
 ### __Ejercicio 3__
+
+Para este ejercicio cree la clase `DirectoryWatcher` que hereda de `EventEmitter` y que contine el método `watchDirectory` que observa los cambios producidos en un directorio. El usuario y el directorio a observar serán pasados como parámetros desde la línea de comandos haciendo uso del paquete yargs.
 
 ``` typescript
 export class DirectoryWatcher extends EventEmitter {
